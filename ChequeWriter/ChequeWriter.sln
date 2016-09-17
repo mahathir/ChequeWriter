@@ -1,0 +1,77 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChequeWriter.BusinessLogic", "ChequeWriter.BusinessLogic\ChequeWriter.BusinessLogic.csproj", "{B0B7848F-3EB2-4950-9A73-BF41B0AE6EE6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01_DataAccess", "01_DataAccess", "{535D12C3-2A0E-4211-88A6-052F837A9621}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChequeWriter.IDataAccess", "ChequeWriter.IDataAccess\ChequeWriter.IDataAccess.csproj", "{E1469757-6077-4C11-92E7-C1C9DFCDAB38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChequeWriter.DTO", "ChequeWriter.DTO\ChequeWriter.DTO.csproj", "{46A8D078-67F0-41D6-851E-0261D4EFF63C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChequeWriter.DataAccess.EF", "ChequeWriter.DataAccess.EF\ChequeWriter.DataAccess.EF.csproj", "{312D28EA-B1EC-44B9-B5D6-1A9E380D9F74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChequeWriter.DataAccess.MongoDB", "ChequeWriter.DataAccess.MongoDB\ChequeWriter.DataAccess.MongoDB.csproj", "{4BA7FDE2-B8D9-4237-BC60-6528BA411F55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChequeWriter.IBusinessLogic", "ChequeWriter.IBusinessLogic\ChequeWriter.IBusinessLogic.csproj", "{DECA64A7-10AF-412D-99A8-56C42CE02A81}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02_BusinessLogic", "02_BusinessLogic", "{113DC3DF-FBA5-4E6B-84F6-E8F164E68131}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChequeWriter.BusinessLogic.Test", "ChequeWriter.BusinessLogic.Test\ChequeWriter.BusinessLogic.Test.csproj", "{B05A3613-A08F-4C02-8F14-67330BE9DBE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChequeWriter.Commons", "ChequeWriter.Commons\ChequeWriter.Commons.csproj", "{030003D5-21D2-4E7B-866B-66C41C494130}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B0B7848F-3EB2-4950-9A73-BF41B0AE6EE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0B7848F-3EB2-4950-9A73-BF41B0AE6EE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0B7848F-3EB2-4950-9A73-BF41B0AE6EE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0B7848F-3EB2-4950-9A73-BF41B0AE6EE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1469757-6077-4C11-92E7-C1C9DFCDAB38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1469757-6077-4C11-92E7-C1C9DFCDAB38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1469757-6077-4C11-92E7-C1C9DFCDAB38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1469757-6077-4C11-92E7-C1C9DFCDAB38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46A8D078-67F0-41D6-851E-0261D4EFF63C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46A8D078-67F0-41D6-851E-0261D4EFF63C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46A8D078-67F0-41D6-851E-0261D4EFF63C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46A8D078-67F0-41D6-851E-0261D4EFF63C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{312D28EA-B1EC-44B9-B5D6-1A9E380D9F74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{312D28EA-B1EC-44B9-B5D6-1A9E380D9F74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{312D28EA-B1EC-44B9-B5D6-1A9E380D9F74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{312D28EA-B1EC-44B9-B5D6-1A9E380D9F74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BA7FDE2-B8D9-4237-BC60-6528BA411F55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BA7FDE2-B8D9-4237-BC60-6528BA411F55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BA7FDE2-B8D9-4237-BC60-6528BA411F55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BA7FDE2-B8D9-4237-BC60-6528BA411F55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DECA64A7-10AF-412D-99A8-56C42CE02A81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DECA64A7-10AF-412D-99A8-56C42CE02A81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DECA64A7-10AF-412D-99A8-56C42CE02A81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DECA64A7-10AF-412D-99A8-56C42CE02A81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B05A3613-A08F-4C02-8F14-67330BE9DBE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B05A3613-A08F-4C02-8F14-67330BE9DBE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B05A3613-A08F-4C02-8F14-67330BE9DBE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B05A3613-A08F-4C02-8F14-67330BE9DBE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{030003D5-21D2-4E7B-866B-66C41C494130}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{030003D5-21D2-4E7B-866B-66C41C494130}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{030003D5-21D2-4E7B-866B-66C41C494130}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{030003D5-21D2-4E7B-866B-66C41C494130}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DECA64A7-10AF-412D-99A8-56C42CE02A81} = {113DC3DF-FBA5-4E6B-84F6-E8F164E68131}
+		{B0B7848F-3EB2-4950-9A73-BF41B0AE6EE6} = {113DC3DF-FBA5-4E6B-84F6-E8F164E68131}
+		{B05A3613-A08F-4C02-8F14-67330BE9DBE9} = {113DC3DF-FBA5-4E6B-84F6-E8F164E68131}
+		{E1469757-6077-4C11-92E7-C1C9DFCDAB38} = {535D12C3-2A0E-4211-88A6-052F837A9621}
+		{46A8D078-67F0-41D6-851E-0261D4EFF63C} = {535D12C3-2A0E-4211-88A6-052F837A9621}
+		{312D28EA-B1EC-44B9-B5D6-1A9E380D9F74} = {535D12C3-2A0E-4211-88A6-052F837A9621}
+		{4BA7FDE2-B8D9-4237-BC60-6528BA411F55} = {535D12C3-2A0E-4211-88A6-052F837A9621}
+	EndGlobalSection
+EndGlobal
