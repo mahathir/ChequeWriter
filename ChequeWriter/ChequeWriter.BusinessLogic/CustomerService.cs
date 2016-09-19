@@ -37,10 +37,7 @@ namespace ChequeWriter.BusinessLogic
                 customer.CustomerNo = GenerateNewCustomerNo();
             }
 
-            ValidateNullWhiteSpace(customer.ContactNo, result, "ContactNo", EntitiesRes.ContactNo);
-            ValidateNullWhiteSpace(customer.Address, result, "Address", EntitiesRes.Address);
-            ValidateNullWhiteSpace(customer.FirstName, result, "FirstName", EntitiesRes.FirstName);
-            ValidateNullWhiteSpace(customer.LastName, result, "LastName", EntitiesRes.LastName);
+            ValidateCustomer(customer, result);
             ValidateNullWhiteSpace(customer.Password, result, "Password", EntitiesRes.Password);
 
             if (result.ErrorMessages.Count > 0) return result;
@@ -104,6 +101,12 @@ namespace ChequeWriter.BusinessLogic
         public IServiceResult<bool> Update(Customer customer)
         {
             var result = new ServiceResult<bool>();
+
+            ValidateCustomer(customer, result);
+            ValidateNullWhiteSpace(customer.Status, result, "Status", EntitiesRes.Status);
+
+            if (result.ErrorMessages.Count > 0) return result;
+
             var existingCustomer = UnitOfWork.CustomerRepo.Retrieve(customer.CustomerID);
 
             if (existingCustomer == null)
@@ -112,7 +115,15 @@ namespace ChequeWriter.BusinessLogic
                 return result;
             }
 
-            UnitOfWork.CustomerRepo.Update(customer);
+            existingCustomer.Address = customer.Address;
+            existingCustomer.ContactNo = customer.ContactNo;
+            existingCustomer.FirstName = customer.FirstName;
+            existingCustomer.LastName = customer.LastName;
+            existingCustomer.Password = string.IsNullOrWhiteSpace(customer.Password) ? 
+                existingCustomer.Password : customer.Password;
+            existingCustomer.Status = customer.Status;
+
+            UnitOfWork.CustomerRepo.Update(existingCustomer);
             UnitOfWork.SaveChanges();
             return result;
         }
@@ -141,6 +152,10 @@ namespace ChequeWriter.BusinessLogic
                 UnitOfWork.SaveChanges();
                 result.Result = true;
             }
+            else
+            {
+                result.ErrorMessages.Add("CustomerID", string.Format(MessagesRes._NotFound, EntitiesRes.Customer));
+            }
             return result;
         }
 
@@ -156,6 +171,14 @@ namespace ChequeWriter.BusinessLogic
             latestId++;
 
             return "Cust-" + latestId.ToString("D10");
+        }
+
+        private static void ValidateCustomer<TEntity>(Customer customer, ServiceResult<TEntity> result)
+        {
+            ValidateNullWhiteSpace(customer.ContactNo, result, "ContactNo", EntitiesRes.ContactNo);
+            ValidateNullWhiteSpace(customer.Address, result, "Address", EntitiesRes.Address);
+            ValidateNullWhiteSpace(customer.FirstName, result, "FirstName", EntitiesRes.FirstName);
+            ValidateNullWhiteSpace(customer.LastName, result, "LastName", EntitiesRes.LastName);
         }
 
         private byte[] GenerateSalt(int length = 32)

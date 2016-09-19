@@ -10,7 +10,7 @@
 namespace ChequeWriter.Web.Customer {
     
     
-    public partial class Add {
+    public partial class Edit {
         
         /// <summary>
         /// CustomerEditor control.
