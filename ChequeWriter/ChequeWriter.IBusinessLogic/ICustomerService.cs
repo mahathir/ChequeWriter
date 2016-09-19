@@ -13,5 +13,6 @@ namespace ChequeWriter.IBusinessLogic
     /// <seealso cref="ChequeWriter.IBusinessLogic.IService{ChequeWriter.DTO.Models.Customer,System.Int64}" />
     public interface ICustomerService : IService<Customer, long>
     {
+        string GenerateNewCustomerNo();
     }
 }

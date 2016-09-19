@@ -43,7 +43,7 @@ namespace ChequeWriter.IDataAccess.Interfaces
         /// <param name="orderBy">The order by.</param>
         /// <returns></returns>
         PagedResult<TEntity> Retrieve(int pageNumber, int pageSize, IDictionary<string, string> searchCriteria = null,
-            IList<string> orderCriteria = null);
+            IDictionary<string, string> orderCriteria = null);
 
         /// <summary>
         /// Updates the specified entity.

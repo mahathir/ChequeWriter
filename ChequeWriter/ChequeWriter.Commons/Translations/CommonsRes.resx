@@ -123,9 +123,6 @@
   <data name="Add_" xml:space="preserve">
     <value>Add {0}</value>
   </data>
-  <data name="Amount" xml:space="preserve">
-    <value>Amount</value>
-  </data>
   <data name="Canceled" xml:space="preserve">
     <value>Canceled</value>
   </data>
@@ -137,9 +134,6 @@
   </data>
   <data name="Join2Words" xml:space="preserve">
     <value>{0} {1}</value>
-  </data>
-  <data name="Memo" xml:space="preserve">
-    <value>Memo</value>
   </data>
   <data name="Printed" xml:space="preserve">
     <value>Printed</value>

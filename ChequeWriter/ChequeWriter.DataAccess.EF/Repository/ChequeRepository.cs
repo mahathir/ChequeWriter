@@ -48,36 +48,12 @@ namespace ChequeWriter.DataAccess.EF.Repository
         /// <returns></returns>
         public PagedResult<Cheque> Retrieve(int pageNumber, int pageSize, 
             IDictionary<string, string> searchCriteria = null,
-            IList<string> orderCriteria = null)
+            IDictionary<string, string> orderCriteria = null)
         {
             IQueryable<Cheque> query = DbSet.Where(a => a.Status != ChequeStatus.R.ToString());
-            if (searchCriteria != null && searchCriteria.Count > 0)
-            {
-                query = from cheque in query
-                        where
-                            searchCriteria.ContainsKey("Memo") ?
-                                cheque.Memo.Contains(searchCriteria["Memo"]) : true ||
-                            searchCriteria.ContainsKey("Status") ?
-                                cheque.Status.Contains(searchCriteria["Status"]) : true ||
-                            searchCriteria.ContainsKey("ChequeNo") ?
-                                cheque.ChequeNo == searchCriteria["ChequeNo"] : true
-                        select cheque;
-            }
-            if (orderCriteria != null && orderCriteria.Count > 0)
-            {
-                var theType = typeof(Cheque);
-                foreach (var order in orderCriteria)
-                {
-                    if (theType.GetProperty(order) != null)
-                    {
-                        query = query.OrderBy(order);
-                    }
-                }
-            }
-            else
-            {
-                query = query.OrderBy(a => a.PostingDate);
-            }
+            query = Search(searchCriteria, query);
+            query = Sorting(query, a => a.PostingDate, orderCriteria);
+
             var count = query.LongCount();
             var result = query.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
 

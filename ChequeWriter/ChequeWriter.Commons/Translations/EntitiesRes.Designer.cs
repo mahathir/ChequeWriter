@@ -61,6 +61,24 @@ namespace ChequeWriter.Commons.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        public static string Address {
+            get {
+                return ResourceManager.GetString("Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Amount.
+        /// </summary>
+        public static string Amount {
+            get {
+                return ResourceManager.GetString("Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cheque.
         /// </summary>
         public static string Cheque {
@@ -79,6 +97,15 @@ namespace ChequeWriter.Commons.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contact Number.
+        /// </summary>
+        public static string ContactNo {
+            get {
+                return ResourceManager.GetString("ContactNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Customer.
         /// </summary>
         public static string Customer {
@@ -93,6 +120,33 @@ namespace ChequeWriter.Commons.Translations {
         public static string CustomerNo {
             get {
                 return ResourceManager.GetString("CustomerNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First Name.
+        /// </summary>
+        public static string FirstName {
+            get {
+                return ResourceManager.GetString("FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Name.
+        /// </summary>
+        public static string LastName {
+            get {
+                return ResourceManager.GetString("LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Memo.
+        /// </summary>
+        public static string Memo {
+            get {
+                return ResourceManager.GetString("Memo", resourceCulture);
             }
         }
         

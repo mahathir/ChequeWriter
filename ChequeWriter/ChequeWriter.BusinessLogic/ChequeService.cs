@@ -116,7 +116,7 @@ namespace ChequeWriter.BusinessLogic
         /// <returns></returns>
         public PagedResult<Cheque> Retrieve(int pageNumber, int pageSize,
             IDictionary<string, string> searchCriteria = null,
-            IList<string> orderCriteria = null)
+            IDictionary<string, string> orderCriteria = null)
         {
             return UnitOfWork.ChequeRepo.Retrieve(pageNumber, pageSize, searchCriteria, orderCriteria);
         }

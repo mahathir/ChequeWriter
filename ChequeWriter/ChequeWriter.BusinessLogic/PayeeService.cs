@@ -67,8 +67,8 @@ namespace ChequeWriter.BusinessLogic
         /// <param name="orderCriteria">The order criteria.</param>
         /// <returns></returns>
         public PagedResult<Payee> Retrieve(int pageNumber, int pageSize, 
-            IDictionary<string, string> searchCriteria = null, 
-            IList<string> orderCriteria = null)
+            IDictionary<string, string> searchCriteria = null,
+            IDictionary<string, string> orderCriteria = null)
         {
             return UnitOfWork.PayeeRepo.Retrieve(pageNumber, pageSize, searchCriteria, orderCriteria);
         }

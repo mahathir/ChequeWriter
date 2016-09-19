@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ChequeWriter.Commons;
+using System.Linq.Expressions;
 
 namespace ChequeWriter.DataAccess.EF.Repository
 {
@@ -48,32 +49,11 @@ namespace ChequeWriter.DataAccess.EF.Repository
         /// <returns></returns>
         public PagedResult<Customer> Retrieve(int pageNumber, int pageSize, 
             IDictionary<string, string> searchCriteria = null,
-            IList<string> orderCriteria = null)
+            IDictionary<string, string> orderCriteria = null)
         {
             IQueryable<Customer> query = DbSet.Where(a => a.Status != CustomerStatus.R.ToString());
-            if (searchCriteria != null && searchCriteria.Count > 0)
-            {
-                query = from cust in query
-                        where 
-                            searchCriteria.ContainsKey("FirtsName") ? 
-                                cust.FirstName.Contains(searchCriteria["FirstName"]) : true ||
-                            searchCriteria.ContainsKey("LastName") ?
-                                cust.LastName.Contains(searchCriteria["LastName"]) : true ||
-                            searchCriteria.ContainsKey("CustomerNo") ?
-                                cust.CustomerNo == searchCriteria["CustomerNo"] : true
-                        select cust;
-            }
-            if (orderCriteria != null && orderCriteria.Count > 0)
-            {
-                var theType = typeof(Customer);
-                foreach (var order in orderCriteria)
-                {
-                    if (theType.GetProperty(order) != null)
-                    {
-                        query = query.OrderBy(order);
-                    }
-                }
-            }
+            query = Search(searchCriteria, query);
+            query = Sorting(query, a => a.CustomerNo, orderCriteria);
             var count = query.LongCount();
             var result = query.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
 

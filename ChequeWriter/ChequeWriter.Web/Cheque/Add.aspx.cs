@@ -45,8 +45,8 @@ namespace ChequeWriter.Web.Cheque
             Page.Title = string.Format(CommonsRes.Add_, EntitiesRes.Cheque);
             this.CheckNoLabel.InnerText = EntitiesRes.ChequeNo;
             this.PayeeLabel.InnerText = EntitiesRes.Payee;
-            this.ChequeAmountLabel.InnerText = CommonsRes.Amount;
-            this.ChequeMemoLabel.InnerText = CommonsRes.Memo;
+            this.ChequeAmountLabel.InnerText = EntitiesRes.Amount;
+            this.ChequeMemoLabel.InnerText = EntitiesRes.Memo;
             this.Submit.Text = CommonsRes.Submit;
         }
 

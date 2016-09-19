@@ -88,15 +88,6 @@ namespace ChequeWriter.Commons.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Amount.
-        /// </summary>
-        public static string Amount {
-            get {
-                return ResourceManager.GetString("Amount", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Canceled.
         /// </summary>
         public static string Canceled {
@@ -129,15 +120,6 @@ namespace ChequeWriter.Commons.Translations {
         public static string Join2Words {
             get {
                 return ResourceManager.GetString("Join2Words", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Memo.
-        /// </summary>
-        public static string Memo {
-            get {
-                return ResourceManager.GetString("Memo", resourceCulture);
             }
         }
         

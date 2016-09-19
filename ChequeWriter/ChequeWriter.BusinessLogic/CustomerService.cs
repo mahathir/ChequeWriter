@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ChequeWriter.Commons;
 using ChequeWriter.Commons.Translations;
+using System.Security.Cryptography;
 
 namespace ChequeWriter.BusinessLogic
 {
@@ -77,8 +78,8 @@ namespace ChequeWriter.BusinessLogic
         /// <param name="orderCriteria">The order criteria.</param>
         /// <returns></returns>
         public PagedResult<Customer> Retrieve(int pageNumber, int pageSize, 
-            IDictionary<string, string> searchCriteria = null, 
-            IList<string> orderCriteria = null)
+            IDictionary<string, string> searchCriteria = null,
+            IDictionary<string, string> orderCriteria = null)
         {
             return UnitOfWork.CustomerRepo.Retrieve(pageNumber, pageSize, searchCriteria, orderCriteria);
         }
@@ -128,6 +129,40 @@ namespace ChequeWriter.BusinessLogic
                 result.Result = true;
             }
             return result;
+        }
+
+        public string GenerateNewCustomerNo()
+        {
+            var pagedResult = UnitOfWork.CustomerRepo.Retrieve(1, 1, 
+                orderCriteria: new Dictionary<string, string> { {"CustomerID", "desc"} });
+            long latestId = 0;
+            if (pagedResult.TotalCount > 0)
+            {
+                latestId = pagedResult.Items.FirstOrDefault().CustomerID;
+            }
+            latestId++;
+
+            return "Cust" + latestId.ToString("D9");
+        }
+
+        private byte[] GenerateSalt(int length = 32)
+        {
+            var bytes = new byte[length];
+
+            using (var rng = new RNGCryptoServiceProvider())
+            {
+                rng.GetBytes(bytes);
+            }
+
+            return bytes;
+        }
+
+        private byte[] GenerateHash(byte[] password, byte[] salt, int iterations, int length)
+        {
+            using (var deriveBytes = new Rfc2898DeriveBytes(password, salt, iterations))
+            {
+                return deriveBytes.GetBytes(length);
+            }
         }
     }
 }

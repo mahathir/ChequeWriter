@@ -109,5 +109,62 @@ namespace ChequeWriter.DataAccess.EF.Repository
             DbSet.Attach(entityToUpdate);
             Context.Entry(entityToUpdate).State = EntityState.Modified;
         }
+
+        internal IQueryable<TEntity> Sorting<TSort>(IQueryable<TEntity> query,
+            Expression<Func<TEntity, TSort>> orderDefault, 
+            IDictionary<string, string> orderCriteria = null)
+        {
+            if (orderCriteria != null && orderCriteria.Count > 0)
+            {
+                var theType = typeof(TEntity);
+                foreach (var order in orderCriteria)
+                {
+                    if (theType.GetProperty(order.Key) != null)
+                    {
+                        if ((order.Value ?? "desc").ToLower() == "desc")
+                        {
+                            query = query.OrderByDescending(order.Key);
+                        }
+                        else
+                        {
+                            query = query.OrderBy(order.Key);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                query = query.OrderBy(orderDefault);
+            }
+
+            return query;
+        }
+
+        internal IQueryable<TEntity> Search(IDictionary<string, string> searchCriteria, IQueryable<TEntity> query)
+        {
+            if (searchCriteria != null && searchCriteria.Count > 0)
+            {
+                var theType = typeof(TEntity);
+                foreach (var criteria in searchCriteria)
+                {
+                    if (theType.GetProperty(criteria.Key) != null)
+                    {
+                        query = query.Where(SimpleComparison<TEntity>(criteria.Key, criteria.Value)).AsQueryable();
+                    }
+                }
+            }
+            return query;
+        }
+
+        internal Func<TEntity, bool> SimpleComparison<TEntity>(string property, object value)
+        {
+            var type = typeof(TEntity);
+            var pe = Expression.Parameter(type, "p");
+            var propertyReference = Expression.Property(pe, property);
+            var constantReference = Expression.Constant(value);
+            return Expression.Lambda<Func<TEntity, bool>>
+                (Expression.Equal(propertyReference, constantReference),
+                new[] { pe }).Compile();
+        }
     }
 }
