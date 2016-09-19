@@ -53,6 +53,9 @@ namespace ChequeWriter.BusinessLogic
                     CultureInfo.InvariantCulture);
             }
 
+            ValidateNullWhiteSpace(cheque.Memo, result, "Memo", EntitiesRes.Memo);
+            if (result.ErrorMessages.Count > 0) return result;
+
             var customer = UnitOfWork.CustomerRepo.Retrieve(cheque.CustomerID);
 
             if (customer == null)
@@ -136,6 +139,8 @@ namespace ChequeWriter.BusinessLogic
                 result.Result = false;
                 return result;
             }
+            ValidateNullWhiteSpace(cheque.Memo, result, "Memo", EntitiesRes.Memo);
+            if (result.ErrorMessages.Count > 0) return result;
 
             // Trying to change status.
             if (existingCheque.Status != cheque.Status)
@@ -167,7 +172,13 @@ namespace ChequeWriter.BusinessLogic
                     if (!ValidatePrintCheque(existingCheque, result)) return result;
                 }
             }
-            UnitOfWork.ChequeRepo.Update(cheque);
+
+            existingCheque.Amount = cheque.Amount;
+            existingCheque.Memo = cheque.Memo;
+            existingCheque.PayeeID = cheque.PayeeID;
+            existingCheque.Status = cheque.Status;
+
+            UnitOfWork.ChequeRepo.Update(existingCheque);
             UnitOfWork.SaveChanges();
             result.Result = true;
 
@@ -205,10 +216,10 @@ namespace ChequeWriter.BusinessLogic
         /// Cancels the cheque.
         /// </summary>
         /// <param name="cheque">The cheque.</param>
-        public IServiceResult<bool> CancelCheque(Cheque cheque)
+        public IServiceResult<bool> CancelCheque(long chequeId)
         {
             var result = new ServiceResult<bool>();
-            var existingCheque = UnitOfWork.ChequeRepo.Retrieve(cheque.ChequeID);
+            var existingCheque = UnitOfWork.ChequeRepo.Retrieve(chequeId);
             if (existingCheque != null && ValidateCancelCheque(existingCheque, result))
             {
                 existingCheque.Status = ChequeStatus.C.ToString();
@@ -223,13 +234,13 @@ namespace ChequeWriter.BusinessLogic
         /// Prints the cheque.
         /// </summary>
         /// <param name="cheque">The cheque.</param>
-        public IServiceResult<bool> PrintCheque(Cheque cheque)
+        public IServiceResult<bool> PrintCheque(long chequeId)
         {
             var result = new ServiceResult<bool>();
-            var existingCheque = UnitOfWork.ChequeRepo.Retrieve(cheque.ChequeID);
+            var existingCheque = UnitOfWork.ChequeRepo.Retrieve(chequeId);
             if (existingCheque != null && ValidatePrintCheque(existingCheque, result))
             {
-                existingCheque.Status = ChequeStatus.C.ToString();
+                existingCheque.Status = ChequeStatus.P.ToString();
                 UnitOfWork.ChequeRepo.Update(existingCheque);
                 UnitOfWork.SaveChanges();
                 result.Result = true;

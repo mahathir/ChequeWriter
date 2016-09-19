@@ -13,9 +13,9 @@ namespace ChequeWriter.IBusinessLogic
     /// <seealso cref="ChequeWriter.IBusinessLogic.IService{ChequeWriter.DTO.Models.Cheque,System.Int64}" />
     public interface IChequeService : IService<Cheque, long>
     {
-        IServiceResult<bool> CancelCheque(Cheque cheque);
+        IServiceResult<bool> CancelCheque(long chequeId);
 
-        IServiceResult<bool> PrintCheque(Cheque cheque);
+        IServiceResult<bool> PrintCheque(long chequeId);
 
         string GenerateChequeNumber(DateTime? datetime = null);
 

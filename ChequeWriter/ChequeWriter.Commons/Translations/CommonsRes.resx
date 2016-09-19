@@ -124,6 +124,9 @@
     <value>Add {0}</value>
     <comment>Add {0}</comment>
   </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>Back To List</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
@@ -164,6 +167,9 @@
   </data>
   <data name="New" xml:space="preserve">
     <value>New</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Print</value>
   </data>
   <data name="Printed" xml:space="preserve">
     <value>Printed</value>

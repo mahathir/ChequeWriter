@@ -15,12 +15,11 @@ namespace ChequeWriter.Web.Customer
     {
         [Dependency]
         public ICustomerService CustomerService { get; set; }
-        private string _panelTitle;
         public string Title
         {
             get
             {
-                return (ViewState["PanelTitle"] = ViewState["PanelTitle"] ?? _panelTitle).ToString();
+                return ViewState["PanelTitle"].ToString();
             }
             set
             {
@@ -55,7 +54,7 @@ namespace ChequeWriter.Web.Customer
             this.Status.SelectedValue = CustomerStatus.A.ToString();
             this.Status.Enabled = false;
             this.Delete.Visible = false;
-            this._panelTitle = string.Format(CommonsRes.Add_, EntitiesRes.Customer);
+            this.Title = string.Format(CommonsRes.Add_, EntitiesRes.Customer);
         }
 
         private void GoToEditMode()
@@ -71,7 +70,7 @@ namespace ChequeWriter.Web.Customer
             else
             {
                 BindToView(customer);
-                this._panelTitle = string.Format(CommonsRes.Edit_, EntitiesRes.Customer);
+                this.Title = string.Format(CommonsRes.Edit_, EntitiesRes.Customer);
             }
         }
 

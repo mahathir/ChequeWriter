@@ -10,15 +10,15 @@
 namespace ChequeWriter.Web.Cheque {
     
     
-    public partial class List {
+    public partial class Edit {
         
         /// <summary>
-        /// Cheque_GridView control.
+        /// ChequeEditor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView Cheque_GridView;
+        protected global::ChequeWriter.Web.Cheque.ChequeEditor ChequeEditor;
     }
 }

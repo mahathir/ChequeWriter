@@ -169,6 +169,15 @@ namespace ChequeWriter.Commons.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Posting Date.
+        /// </summary>
+        public static string PostingDate {
+            get {
+                return ResourceManager.GetString("PostingDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Status.
         /// </summary>
         public static string Status {

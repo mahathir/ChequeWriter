@@ -98,8 +98,9 @@ namespace ChequeWriter.Web.Payee
 
         private void GetGridData(int current, int pageSize)
         {
-            var data = PayeeService.Retrieve(current, pageSize, 
-                new Dictionary<string, string> { { "CustomerID", this.CustomerDdl.SelectedValue } });
+            var data = PayeeService.Retrieve(current, pageSize,
+                new Dictionary<string, string> { { "CustomerID", string.IsNullOrWhiteSpace(this.CustomerDdl.SelectedValue) ? "0" : 
+                    this.CustomerDdl.SelectedValue } });
             Payee_GridView.VirtualItemCount = (int)data.TotalCount;
             Payee_GridView.DataSource = data.Items.Select(a => new
             {

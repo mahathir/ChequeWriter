@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace ChequeWriter.Web.Cheque
 {
-    public partial class Add : System.Web.UI.Page
+    public partial class Edit : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -18,10 +18,10 @@ namespace ChequeWriter.Web.Cheque
                 Response.Redirect("~/Cheque");
                 return;
             }
-            long customerId;
-            if (long.TryParse(routeData[0], out customerId))
+            long chequeId;
+            if (long.TryParse(routeData[0], out chequeId))
             {
-                this.ChequeEditor.CustomerID = customerId;
+                this.ChequeEditor.ChequeID = chequeId;
             }
             else
             {

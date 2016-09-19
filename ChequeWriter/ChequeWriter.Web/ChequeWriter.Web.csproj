@@ -192,7 +192,9 @@
     <Content Include="Account\VerifyPhoneNumber.aspx" />
     <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Cheque\Add.aspx" />
-    <Content Include="Cheque\List.aspx" />
+    <Content Include="Cheque\ChequeEditor.ascx" />
+    <Content Include="Cheque\Default.aspx" />
+    <Content Include="Cheque\Edit.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -383,12 +385,26 @@
     <Compile Include="Cheque\Add.aspx.designer.cs">
       <DependentUpon>Add.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Cheque\List.aspx.cs">
-      <DependentUpon>List.aspx</DependentUpon>
+    <Compile Include="Cheque\ChequeEditor.ascx.cs">
+      <DependentUpon>ChequeEditor.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Cheque\List.aspx.designer.cs">
-      <DependentUpon>List.aspx</DependentUpon>
+    <Compile Include="Cheque\ChequeEditor.ascx.designer.cs">
+      <DependentUpon>ChequeEditor.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Cheque\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cheque\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cheque\Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cheque\Edit.aspx.designer.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>

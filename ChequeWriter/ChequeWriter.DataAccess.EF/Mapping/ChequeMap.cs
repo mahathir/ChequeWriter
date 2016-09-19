@@ -14,7 +14,7 @@ namespace ChequeWriter.DataAccess.EF.Mapping
             // Properties
             this.Property(t => t.ChequeNo)
                 .IsRequired()
-                .HasMaxLength(16);
+                .HasMaxLength(17);
 
             this.Property(t => t.Memo)
                 .IsRequired()

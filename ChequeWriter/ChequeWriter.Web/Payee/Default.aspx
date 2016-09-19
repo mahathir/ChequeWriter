@@ -20,6 +20,7 @@
             <asp:Button CssClass="btn btn-primary" runat="server" ID="AddPayee" OnClick="AddPayee_Click" />
             <br />
             <br />
+            <asp:ValidationSummary ShowModelStateErrors="true" runat="server" CssClass="text-danger" />
             <div class="table-responsive">
                 <asp:GridView CssClass="table table-hover table-bordered" ID="Payee_GridView" AllowCustomPaging="true"
                     AllowPaging="true" AutoGenerateColumns="false" runat="server"
