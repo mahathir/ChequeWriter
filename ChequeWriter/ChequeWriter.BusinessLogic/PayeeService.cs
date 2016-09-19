@@ -31,12 +31,24 @@ namespace ChequeWriter.BusinessLogic
         {
             var result = new ServiceResult<Payee>();
 
+            ValidateNullWhiteSpace(payee.FirstName, result, "FirstName", EntitiesRes.FirstName);
+            ValidateNullWhiteSpace(payee.LastName, result, "LastName", EntitiesRes.LastName);
+
+            if (result.ErrorMessages.Count > 0) return result;
+
             var existingPayee = UnitOfWork.PayeeRepo.Retrieve(payee.PayeeID);
 
             if (existingPayee != null)
             {
                 result.ErrorMessages.Add("PayeeID", string.Format(MessagesRes._Already_, EntitiesRes.Payee,
                     CommonsRes.Exists));
+                return result;
+            }
+
+            var existingCust = UnitOfWork.CustomerRepo.Retrieve(payee.CustomerID);
+            if (existingCust == null)
+            {
+                result.ErrorMessages.Add("CustomerID", string.Format(MessagesRes._NotFound, EntitiesRes.Customer));
                 return result;
             }
 
@@ -89,7 +101,18 @@ namespace ChequeWriter.BusinessLogic
                 return result;
             }
 
-            UnitOfWork.PayeeRepo.Update(payee);
+            var existingCust = UnitOfWork.CustomerRepo.Retrieve(payee.CustomerID);
+            if (existingCust == null)
+            {
+                result.ErrorMessages.Add("CustomerID", string.Format(MessagesRes._NotFound, EntitiesRes.Customer));
+                return result;
+            }
+
+            existingPayee.FirstName = payee.FirstName;
+            existingPayee.LastName = payee.LastName;
+            existingPayee.Status = payee.Status;
+
+            UnitOfWork.PayeeRepo.Update(existingPayee);
             UnitOfWork.SaveChanges();
 
             result.Result = true;

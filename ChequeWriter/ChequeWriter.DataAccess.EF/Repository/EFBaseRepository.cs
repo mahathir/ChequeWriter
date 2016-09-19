@@ -161,7 +161,8 @@ namespace ChequeWriter.DataAccess.EF.Repository
             var type = typeof(TEntity);
             var pe = Expression.Parameter(type, "p");
             var propertyReference = Expression.Property(pe, property);
-            var constantReference = Expression.Constant(value);
+            var newValue = Convert.ChangeType(value, type.GetProperty(property).PropertyType);
+            var constantReference = Expression.Constant(newValue);
             return Expression.Lambda<Func<TEntity, bool>>
                 (Expression.Equal(propertyReference, constantReference),
                 new[] { pe }).Compile();

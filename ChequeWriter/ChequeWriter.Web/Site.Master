@@ -52,6 +52,7 @@
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Home</a></li>
                         <li><a runat="server" href="~/Customer">Customer</a></li>
+                        <li><a runat="server" href="~/Payee">Payee</a></li>
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled" Visible="false">
                         <AnonymousTemplate>

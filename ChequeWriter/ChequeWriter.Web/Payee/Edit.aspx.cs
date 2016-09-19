@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace ChequeWriter.Web.Customer
+namespace ChequeWriter.Web.Payee
 {
     public partial class Edit : System.Web.UI.Page
     {
@@ -15,19 +15,20 @@ namespace ChequeWriter.Web.Customer
 
             if (routeData == null || routeData.Count == 0)
             {
-                Response.Redirect("~/Customer");
+                Response.Redirect("~/Payee");
                 return;
             }
-            long customerId;
-            if (long.TryParse(routeData[0], out customerId))
+            long payeeId;
+            if (long.TryParse(routeData[0], out payeeId))
             {
-                this.CustomerEditor.CustomerID = customerId;
+                this.PayeeEditor.PayeeID = payeeId;
             }
             else
             {
-                Response.Redirect("~/Customer");
+                Response.Redirect("~/Payee");
                 return;
             }
+
         }
     }
 }

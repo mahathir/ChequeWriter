@@ -131,5 +131,14 @@ namespace ChequeWriter.Commons.Translations {
                 return ResourceManager.GetString("Only_ThatCanBe_", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please {0}.
+        /// </summary>
+        public static string Please_ {
+            get {
+                return ResourceManager.GetString("Please_", resourceCulture);
+            }
+        }
     }
 }

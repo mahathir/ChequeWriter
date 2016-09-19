@@ -133,6 +133,10 @@
     <value>Only {0} that can be {1}.</value>
     <comment>Only {0} that can be {1}.</comment>
   </data>
+  <data name="Please_" xml:space="preserve">
+    <value>Please {0}</value>
+    <comment>Please {0}</comment>
+  </data>
   <data name="_Already_" xml:space="preserve">
     <value>{0} Already {1}.</value>
     <comment>{0} Already {1}.</comment>
