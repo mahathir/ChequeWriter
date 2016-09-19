@@ -52,12 +52,8 @@ namespace ChequeWriter.Web.Cheque
 
         protected void Submit_Click(object sender, EventArgs e)
         {
-            var model = new ChequeAddModel();
-            TryUpdateModel(model);
-            if (ModelState.IsValid)
-            {
-                ChequeService.Create(model.ToDTO());
-            }
+            var model = new DTO.Models.Cheque();
+            ChequeService.Create(model);
         }
     }
 }

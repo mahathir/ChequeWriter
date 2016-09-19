@@ -61,11 +61,29 @@ namespace ChequeWriter.Commons.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} Already {1}.
+        ///   Looks up a localized string similar to {0} Already {1}..
         /// </summary>
         public static string _Already_ {
             get {
                 return ResourceManager.GetString("_Already_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} and {1} doesn&apos;t {2}.
+        /// </summary>
+        public static string _And_Doesnt_ {
+            get {
+                return ResourceManager.GetString("_And_Doesnt_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} can&apos;t be {1}.
+        /// </summary>
+        public static string _CantBe_ {
+            get {
+                return ResourceManager.GetString("_CantBe_", resourceCulture);
             }
         }
         

@@ -119,14 +119,26 @@
   </resheader>
   <data name="Cant__" xml:space="preserve">
     <value>Can't {0} {1}.</value>
+    <comment>Can't {0} {1}.</comment>
   </data>
   <data name="Only_ThatCanBe_" xml:space="preserve">
     <value>Only {0} that can be {1}.</value>
+    <comment>Only {0} that can be {1}.</comment>
   </data>
   <data name="_Already_" xml:space="preserve">
-    <value>{0} Already {1}</value>
+    <value>{0} Already {1}.</value>
+    <comment>{0} Already {1}.</comment>
+  </data>
+  <data name="_And_Doesnt_" xml:space="preserve">
+    <value>{0} and {1} doesn't {2}</value>
+    <comment>{0} and {1} doesn't {2}</comment>
+  </data>
+  <data name="_CantBe_" xml:space="preserve">
+    <value>{0} can't be {1}</value>
+    <comment>{0} can't be {1}</comment>
   </data>
   <data name="_NotFound" xml:space="preserve">
     <value>{0} not found.</value>
+    <comment>{0} not found.</comment>
   </data>
 </root>

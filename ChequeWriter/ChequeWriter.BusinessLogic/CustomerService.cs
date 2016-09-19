@@ -32,6 +32,19 @@ namespace ChequeWriter.BusinessLogic
         {
             var result = new ServiceResult<Customer>();
 
+            if (string.IsNullOrWhiteSpace(customer.CustomerNo))
+            {
+                customer.CustomerNo = GenerateNewCustomerNo();
+            }
+
+            ValidateNullWhiteSpace(customer.ContactNo, result, "ContactNo", EntitiesRes.ContactNo);
+            ValidateNullWhiteSpace(customer.Address, result, "Address", EntitiesRes.Address);
+            ValidateNullWhiteSpace(customer.FirstName, result, "FirstName", EntitiesRes.FirstName);
+            ValidateNullWhiteSpace(customer.LastName, result, "LastName", EntitiesRes.LastName);
+            ValidateNullWhiteSpace(customer.Password, result, "Password", EntitiesRes.Password);
+
+            if (result.ErrorMessages.Count > 0) return result;
+
             var existingCustomer = UnitOfWork.CustomerRepo.Retrieve(customer.CustomerID);
 
             if (existingCustomer != null)
@@ -142,7 +155,7 @@ namespace ChequeWriter.BusinessLogic
             }
             latestId++;
 
-            return "Cust" + latestId.ToString("D9");
+            return "Cust-" + latestId.ToString("D10");
         }
 
         private byte[] GenerateSalt(int length = 32)

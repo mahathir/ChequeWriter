@@ -147,6 +147,9 @@
   <data name="Memo" xml:space="preserve">
     <value>Memo</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
   <data name="Payee" xml:space="preserve">
     <value>Payee</value>
   </data>

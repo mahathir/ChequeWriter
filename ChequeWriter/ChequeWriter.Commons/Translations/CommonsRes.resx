@@ -122,18 +122,35 @@
   </data>
   <data name="Add_" xml:space="preserve">
     <value>Add {0}</value>
+    <comment>Add {0}</comment>
   </data>
   <data name="Canceled" xml:space="preserve">
     <value>Canceled</value>
   </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>Empty</value>
   </data>
   <data name="Exists" xml:space="preserve">
     <value>Exists</value>
   </data>
   <data name="Join2Words" xml:space="preserve">
     <value>{0} {1}</value>
+    <comment>{0} {1}</comment>
+  </data>
+  <data name="Match" xml:space="preserve">
+    <value>Match</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>New</value>
   </data>
   <data name="Printed" xml:space="preserve">
     <value>Printed</value>
@@ -146,5 +163,6 @@
   </data>
   <data name="_Number" xml:space="preserve">
     <value>{0} Number</value>
+    <comment>{0} Number</comment>
   </data>
 </root>

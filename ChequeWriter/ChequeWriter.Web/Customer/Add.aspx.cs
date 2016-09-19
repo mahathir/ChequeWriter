@@ -23,38 +23,51 @@ namespace ChequeWriter.Web.Customer
             {
                 SetTranslation();
 
-                (this.addCustomerForm.FindControl("CustomerNo") as HtmlInputText).Value = 
-                    CustomerService.GenerateNewCustomerNo();
+                this.CustomerNo.Value = CustomerService.GenerateNewCustomerNo();
             }
         }
 
         private void SetTranslation()
         {
             Page.Title = string.Format(CommonsRes.Add_, EntitiesRes.Customer);
-            (this.addCustomerForm.FindControl("FirstNameLabel") as HtmlGenericControl).InnerText = EntitiesRes.FirstName;
-            (this.addCustomerForm.FindControl("LastNameLabel") as HtmlGenericControl).InnerText = EntitiesRes.LastName;
-            (this.addCustomerForm.FindControl("AddressLabel") as HtmlGenericControl).InnerText = EntitiesRes.Address;
-            (this.addCustomerForm.FindControl("ContactNoLabel") as HtmlGenericControl).InnerText = EntitiesRes.ContactNo;
-            (this.addCustomerForm.FindControl("Submit") as Button).Text = CommonsRes.Submit;
+            this.CustomerNoLabel.InnerText = EntitiesRes.CustomerNo;
+            this.PasswordLabel.InnerText = EntitiesRes.Password;
+            this.ConfirmPasswordLabel.InnerText = CommonsRes.ConfirmPassword;
+            this.FirstNameLabel.InnerText = EntitiesRes.FirstName;
+            this.LastNameLabel.InnerText = EntitiesRes.LastName;
+            this.AddressLabel.InnerText = EntitiesRes.Address;
+            this.ContactNoLabel.InnerText = EntitiesRes.ContactNo;
+            this.Submit.Text = CommonsRes.Submit;
         }
 
         protected void Submit_Click(object sender, EventArgs e)
         {
-            var model = new CustomerAddModel();
-            TryUpdateModel(model);
-            if (ModelState.IsValid)
+            if (this.ConfirmPassword.Value != this.Password.Value)
             {
-                CustomerService.Create(model.ToDTO());
+                ModelState.AddModelError("ConfirmPassword", 
+                    string.Format(MessagesRes._And_Doesnt_, CommonsRes.ConfirmPassword, 
+                    EntitiesRes.Password, CommonsRes.Match));
+                return;
             }
-        }
+            var model = new DTO.Models.Customer();
+            model.CustomerNo = this.CustomerNo.Value;
+            model.FirstName = this.FirstName.Text;
+            model.LastName = this.LastName.Text;
+            model.Address = this.Address.Text;
+            model.ContactNo = this.ContactNo.Text;
+            model.Password = this.Password.Value;
+            var result = CustomerService.Create(model);
 
-        public void addCustomerForm_InsertItem()
-        {
-            var model = new CustomerAddModel();
-            TryUpdateModel(model);
-            if (ModelState.IsValid)
+            if (result.ErrorMessages.Count > 0)
             {
-                CustomerService.Create(model.ToDTO());
+                foreach (var error in result.ErrorMessages)
+                {
+                    ModelState.AddModelError(error.Key, error.Value);
+                }
+            }
+            else
+            {
+                Response.Redirect("~/Customer/Add.aspx");
             }
         }
     }
