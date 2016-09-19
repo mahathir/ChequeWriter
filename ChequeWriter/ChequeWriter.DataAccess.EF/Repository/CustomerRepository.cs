@@ -57,8 +57,10 @@ namespace ChequeWriter.DataAccess.EF.Repository
                         where 
                             searchCriteria.ContainsKey("FirtsName") ? 
                                 cust.FirstName.Contains(searchCriteria["FirstName"]) : true ||
-                            searchCriteria.ContainsKey("LastName") ? 
-                                cust.LastName.Contains(searchCriteria["LastName"]) : true
+                            searchCriteria.ContainsKey("LastName") ?
+                                cust.LastName.Contains(searchCriteria["LastName"]) : true ||
+                            searchCriteria.ContainsKey("CustomerNo") ?
+                                cust.CustomerNo == searchCriteria["CustomerNo"] : true
                         select cust;
             }
             if (orderCriteria != null && orderCriteria.Count > 0)

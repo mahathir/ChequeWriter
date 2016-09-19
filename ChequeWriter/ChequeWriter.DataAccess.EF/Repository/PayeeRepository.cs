@@ -72,6 +72,10 @@ namespace ChequeWriter.DataAccess.EF.Repository
                     }
                 }
             }
+            else
+            {
+                query = query.OrderBy(a => a.FirstName);
+            }
             var count = query.LongCount();
             var result = query.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
 

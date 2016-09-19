@@ -38,10 +38,12 @@ namespace ChequeWriter.DataAccess.EF.Mapping
             // Relationships
             this.HasRequired(t => t.Customer)
                 .WithMany(t => t.Cheques)
-                .HasForeignKey(d => d.CustomerID);
+                .HasForeignKey(d => d.CustomerID)
+                .WillCascadeOnDelete(false);
             this.HasRequired(t => t.Payee)
                 .WithMany(t => t.Cheques)
-                .HasForeignKey(d => d.PayeeID);
+                .HasForeignKey(d => d.PayeeID)
+                .WillCascadeOnDelete(false);
 
         }
     }

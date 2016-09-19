@@ -13,11 +13,11 @@ namespace ChequeWriter.IBusinessLogic
     /// <seealso cref="ChequeWriter.IBusinessLogic.IService{ChequeWriter.DTO.Models.Cheque,System.Int64}" />
     public interface IChequeService : IService<Cheque, long>
     {
-        void CancelCheque(Cheque cheque);
+        IServiceResult<bool> CancelCheque(Cheque cheque);
 
-        void PrintCheque(Cheque cheque);
+        IServiceResult<bool> PrintCheque(Cheque cheque);
 
-        string GenerateChequeNumber();
+        string GenerateChequeNumber(DateTime? datetime = null);
 
         string GetAmountWords(decimal amount);
     }

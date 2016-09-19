@@ -43,6 +43,7 @@
     <Compile Include="IPayeeService.cs" />
     <Compile Include="ICustomerService.cs" />
     <Compile Include="IService.cs" />
+    <Compile Include="IServiceResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -13,12 +13,13 @@ namespace ChequeWriter.IBusinessLogic
     /// <typeparam name="TEntity">The type of the entity.</typeparam>
     /// <typeparam name="TKey">The type of the key.</typeparam>
     public interface IService<TEntity, in TKey> where TEntity : class
-    {
+    {        
         /// <summary>
         /// Creates the specified entity.
         /// </summary>
-        /// <param name="entity">The entity.</param>
-        void Create(TEntity entity);
+        /// <param name="entity"></param>
+        /// <returns>result</returns>
+        IServiceResult<TEntity> Create(TEntity entity);
 
         /// <summary>
         /// Retrieves the specified entity.
@@ -42,18 +43,19 @@ namespace ChequeWriter.IBusinessLogic
         /// Updates the specified entity.
         /// </summary>
         /// <param name="entity">The entity.</param>
-        void Update(TEntity entity);
+        /// <returns>result</returns>
+        IServiceResult<bool> Update(TEntity entity);
 
         /// <summary>
         /// Deletes the specified entity.
         /// </summary>
         /// <param name="entity">The entity.</param>
-        void Delete(TEntity entity);
+        IServiceResult<bool> Delete(TEntity entity);
 
         /// <summary>
         /// Deletes the specified entity.
         /// </summary>
         /// <param name="id">The identifier.</param>
-        void Delete(TKey id);
+        IServiceResult<bool> Delete(TKey id);
     }
 }

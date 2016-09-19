@@ -9,7 +9,12 @@ namespace ChequeWriter.DataAccess.EF
     {
         static ChequeWriterContext()
         {
-            Database.SetInitializer<ChequeWriterContext>(null);
+
+#if DEBUG
+            Database.SetInitializer(new DropCreateSeedDatabaseIfModelChanges());
+#else
+            Database.SetInitializer<ChequeWriterContext>(new CreateDatabaseIfNotExists<ChequeWriterContext>());
+#endif
         }
 
         public ChequeWriterContext()

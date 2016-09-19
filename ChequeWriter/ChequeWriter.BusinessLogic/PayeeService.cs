@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ChequeWriter.Commons;
+using ChequeWriter.Commons.Translations;
 
 namespace ChequeWriter.BusinessLogic
 {
@@ -26,10 +27,25 @@ namespace ChequeWriter.BusinessLogic
         /// Creates the specified payee.
         /// </summary>
         /// <param name="payee">The payee.</param>
-        public void Create(Payee payee)
+        public IServiceResult<Payee> Create(Payee payee)
         {
+            var result = new ServiceResult<Payee>();
+
+            var existingPayee = UnitOfWork.PayeeRepo.Retrieve(payee.PayeeID);
+
+            if (existingPayee != null)
+            {
+                result.ErrorMessages.Add("PayeeID", string.Format(MessagesRes._Already_, EntitiesRes.Payee,
+                    CommonsRes.Exists));
+                return result;
+            }
+
             payee.Status = PayeeStatus.A.ToString();
             UnitOfWork.PayeeRepo.Create(payee);
+            UnitOfWork.SaveChanges();
+
+            result.Result = payee;
+            return result;
         }
 
         /// <summary>
@@ -61,37 +77,50 @@ namespace ChequeWriter.BusinessLogic
         /// Updates the specified payee.
         /// </summary>
         /// <param name="payee">The payee.</param>
-        public void Update(Payee payee)
+        public IServiceResult<bool> Update(Payee payee)
         {
+            var result = new ServiceResult<bool>();
+
+            var existingPayee = UnitOfWork.PayeeRepo.Retrieve(payee.PayeeID);
+
+            if (existingPayee == null)
+            {
+                result.ErrorMessages.Add("PayeeID", string.Format(MessagesRes._NotFound, EntitiesRes.Payee));
+                return result;
+            }
+
             UnitOfWork.PayeeRepo.Update(payee);
+            UnitOfWork.SaveChanges();
+
+            result.Result = true;
+            return result;
         }
 
         /// <summary>
         /// Deletes the specified payee.
         /// </summary>
         /// <param name="payee">The payee.</param>
-        public void Delete(Payee payee)
+        public IServiceResult<bool> Delete(Payee payee)
         {
-            var existingPayee = UnitOfWork.PayeeRepo.Retrieve(payee.CustomerID);
-            if (existingPayee != null)
-            {
-                existingPayee.Status = PayeeStatus.R.ToString();
-                UnitOfWork.PayeeRepo.Update(existingPayee);
-            }
+            return Delete(payee.PayeeID);
         }
 
         /// <summary>
         /// Delete Payee.
         /// </summary>
         /// <param name="id">The payee id.</param>
-        public void Delete(long id)
+        public IServiceResult<bool> Delete(long id)
         {
+            var result = new ServiceResult<bool>();
             var payee = UnitOfWork.PayeeRepo.Retrieve(id);
             if (payee != null)
             {
                 payee.Status = PayeeStatus.R.ToString();
                 UnitOfWork.PayeeRepo.Update(payee);
+                UnitOfWork.SaveChanges();
+                result.Result = true;
             }
+            return result;
         }
     }
 }

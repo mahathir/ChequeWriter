@@ -3,6 +3,10 @@ using System.Web;
 using Microsoft.Practices.Unity;
 using Unity.WebForms;
 using ChequeWriter.Commons;
+using ChequeWriter.IDataAccess;
+using ChequeWriter.DataAccess.EF;
+using ChequeWriter.IBusinessLogic;
+using ChequeWriter.BusinessLogic;
 
 [assembly: WebActivatorEx.PostApplicationStartMethod( typeof(ChequeWriter.Web.App_Start.UnityWebFormsStart), "PostStart" )]
 namespace ChequeWriter.Web.App_Start
@@ -33,11 +37,10 @@ namespace ChequeWriter.Web.App_Start
 		/// <param name="container">Instance of the container to populate.</param>
 		private static void RegisterDependencies( IUnityContainer container )
         {
-            //container.RegisterType<IUserData, UserData>();
-            //container.RegisterType<IUserDomain, UserDomain>();
-
-            //Module initialization thru MEF
-            ModuleLoader.LoadContainer(container, ".\\bin", "ChequeWriter.*.dll");
+            container.RegisterType<IUnitOfWorks, UnitOfWorks>();
+            container.RegisterType<ICustomerService, CustomerService>();
+            container.RegisterType<IChequeService, ChequeService>();
+            container.RegisterType<IPayeeService, PayeeService>();
 		}
 	}
 }

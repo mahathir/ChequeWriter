@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ChequeWriter.Commons;
+using ChequeWriter.Commons.Translations;
 
 namespace ChequeWriter.BusinessLogic
 {
@@ -26,10 +27,35 @@ namespace ChequeWriter.BusinessLogic
         /// Creates the specified customer.
         /// </summary>
         /// <param name="customer">The customer.</param>
-        public void Create(Customer customer)
+        public IServiceResult<Customer> Create(Customer customer)
         {
+            var result = new ServiceResult<Customer>();
+
+            var existingCustomer = UnitOfWork.CustomerRepo.Retrieve(customer.CustomerID);
+
+            if (existingCustomer != null)
+            {
+                result.ErrorMessages.Add("CustomerID", string.Format(MessagesRes._Already_, EntitiesRes.Customer,
+                    CommonsRes.Exists));
+                return result;
+            }
+
+            var pagedResult = UnitOfWork.CustomerRepo.Retrieve(1, 1,
+                new Dictionary<string, string> { { "CustomerNo", customer.CustomerNo } });
+
+            if (pagedResult.TotalCount > 0)
+            {
+                result.ErrorMessages.Add("CustomerNo", string.Format(MessagesRes._Already_, EntitiesRes.CustomerNo,
+                    CommonsRes.Exists));
+                return result;
+            }
+
             customer.Status = CustomerStatus.A.ToString();
             UnitOfWork.CustomerRepo.Create(customer);
+            UnitOfWork.SaveChanges();
+
+            result.Result = customer;
+            return result;
         }
 
         /// <summary>
@@ -61,37 +87,47 @@ namespace ChequeWriter.BusinessLogic
         /// Updates the specified customer.
         /// </summary>
         /// <param name="customer">The customer.</param>
-        public void Update(Customer customer)
+        public IServiceResult<bool> Update(Customer customer)
         {
+            var result = new ServiceResult<bool>();
+            var existingCustomer = UnitOfWork.CustomerRepo.Retrieve(customer.CustomerID);
+
+            if (existingCustomer == null)
+            {
+                result.ErrorMessages.Add("CustomerID", string.Format(MessagesRes._NotFound, EntitiesRes.Customer));
+                return result;
+            }
+
             UnitOfWork.CustomerRepo.Update(customer);
+            UnitOfWork.SaveChanges();
+            return result;
         }
 
         /// <summary>
         /// Deletes the specified customer.
         /// </summary>
         /// <param name="customer">The customer.</param>
-        public void Delete(Customer customer)
+        public IServiceResult<bool> Delete(Customer customer)
         {
-            var cust = UnitOfWork.CustomerRepo.Retrieve(customer.CustomerID);
-            if (cust != null)
-            {
-                cust.Status = CustomerStatus.R.ToString();
-                UnitOfWork.CustomerRepo.Update(cust);
-            }
+            return Delete(customer.CustomerID);
         }
 
         /// <summary>
         /// Deletes the specified customer.
         /// </summary>
         /// <param name="id">The customer id.</param>
-        public void Delete(long id)
+        public IServiceResult<bool> Delete(long id)
         {
+            var result = new ServiceResult<bool>();
             var cust = UnitOfWork.CustomerRepo.Retrieve(id);
             if (cust != null)
             {
                 cust.Status = CustomerStatus.R.ToString();
                 UnitOfWork.CustomerRepo.Update(cust);
+                UnitOfWork.SaveChanges();
+                result.Result = true;
             }
+            return result;
         }
     }
 }

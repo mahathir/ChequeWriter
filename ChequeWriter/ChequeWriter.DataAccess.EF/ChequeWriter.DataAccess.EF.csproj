@@ -62,11 +62,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChequeWriterContext.cs" />
+    <Compile Include="DropCreateSeedDatabaseIfModelChanges.cs" />
     <Compile Include="Extentions.cs" />
     <Compile Include="Mapping\ChequeMap.cs" />
     <Compile Include="Mapping\CustomerMap.cs" />
     <Compile Include="Mapping\PayeeMap.cs" />
-    <Compile Include="ModuleInit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\ChequeRepository.cs" />
     <Compile Include="Repository\PayeeRepository.cs" />

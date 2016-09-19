@@ -58,7 +58,9 @@ namespace ChequeWriter.DataAccess.EF.Repository
                             searchCriteria.ContainsKey("Memo") ?
                                 cheque.Memo.Contains(searchCriteria["Memo"]) : true ||
                             searchCriteria.ContainsKey("Status") ?
-                                cheque.Status.Contains(searchCriteria["Status"]) : true
+                                cheque.Status.Contains(searchCriteria["Status"]) : true ||
+                            searchCriteria.ContainsKey("ChequeNo") ?
+                                cheque.ChequeNo == searchCriteria["ChequeNo"] : true
                         select cheque;
             }
             if (orderCriteria != null && orderCriteria.Count > 0)
@@ -71,6 +73,10 @@ namespace ChequeWriter.DataAccess.EF.Repository
                         query = query.OrderBy(order);
                     }
                 }
+            }
+            else
+            {
+                query = query.OrderBy(a => a.PostingDate);
             }
             var count = query.LongCount();
             var result = query.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
