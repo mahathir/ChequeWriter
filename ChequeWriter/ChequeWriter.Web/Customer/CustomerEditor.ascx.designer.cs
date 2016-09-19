@@ -166,6 +166,15 @@ namespace ChequeWriter.Web.Customer {
         protected global::System.Web.UI.WebControls.DropDownList Status;
         
         /// <summary>
+        /// Delete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Delete;
+        
+        /// <summary>
         /// Submit control.
         /// </summary>
         /// <remarks>
@@ -175,12 +184,12 @@ namespace ChequeWriter.Web.Customer {
         protected global::System.Web.UI.WebControls.Button Submit;
         
         /// <summary>
-        /// Delete control.
+        /// Cancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Delete;
+        protected global::System.Web.UI.WebControls.Button Cancel;
     }
 }

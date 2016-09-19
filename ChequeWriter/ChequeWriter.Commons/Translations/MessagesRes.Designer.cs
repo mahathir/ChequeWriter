@@ -97,6 +97,24 @@ namespace ChequeWriter.Commons.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to {0}?.
+        /// </summary>
+        public static string AreYouSureTo_ {
+            get {
+                return ResourceManager.GetString("AreYouSureTo_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to {0} this {1}?.
+        /// </summary>
+        public static string AreYouSureTo_This_ {
+            get {
+                return ResourceManager.GetString("AreYouSureTo_This_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Can&apos;t {0} {1}..
         /// </summary>
         public static string Cant__ {

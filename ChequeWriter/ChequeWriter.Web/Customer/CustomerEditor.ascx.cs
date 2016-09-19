@@ -15,7 +15,18 @@ namespace ChequeWriter.Web.Customer
     {
         [Dependency]
         public ICustomerService CustomerService { get; set; }
-        public string Title = string.Format(CommonsRes.Add_, EntitiesRes.Customer);
+        private string _panelTitle;
+        public string Title
+        {
+            get
+            {
+                return (ViewState["PanelTitle"] = ViewState["PanelTitle"] ?? _panelTitle).ToString();
+            }
+            set
+            {
+                ViewState["PanelTitle"] = value;
+            }
+        }
 
         public long CustomerID { get; set; }
 
@@ -44,6 +55,7 @@ namespace ChequeWriter.Web.Customer
             this.Status.SelectedValue = CustomerStatus.A.ToString();
             this.Status.Enabled = false;
             this.Delete.Visible = false;
+            this._panelTitle = string.Format(CommonsRes.Add_, EntitiesRes.Customer);
         }
 
         private void GoToEditMode()
@@ -59,6 +71,7 @@ namespace ChequeWriter.Web.Customer
             else
             {
                 BindToView(customer);
+                this._panelTitle = string.Format(CommonsRes.Edit_, EntitiesRes.Customer);
             }
         }
 
@@ -101,6 +114,11 @@ namespace ChequeWriter.Web.Customer
             this.ContactNoLabel.InnerText = EntitiesRes.ContactNo;
             this.Submit.Text = CommonsRes.Submit;
             this.Delete.Text = CommonsRes.Delete;
+            this.Delete.OnClientClick = "return confirm('" +
+                string.Format(MessagesRes.AreYouSureTo_This_, CommonsRes.Delete, EntitiesRes.Customer) + "');";
+            this.Cancel.Text = CommonsRes.Cancel;
+            this.Cancel.OnClientClick = "return confirm('" +
+                string.Format(MessagesRes.AreYouSureTo_, CommonsRes.Cancel) + "');";
         }
 
         protected void Submit_Click(object sender, EventArgs e)
@@ -151,7 +169,7 @@ namespace ChequeWriter.Web.Customer
             }
             else
             {
-                Response.Redirect("~/Customer/List");
+                Response.Redirect("~/Customer");
             }
         }
 
@@ -171,13 +189,18 @@ namespace ChequeWriter.Web.Customer
                 }
                 else
                 {
-                    Response.Redirect("~/Customer/List");
+                    Response.Redirect("~/Customer");
                 }
             }
             else
             {
-                Response.Redirect("~/Customer/List");
+                Response.Redirect("~/Customer");
             }
+        }
+
+        protected void Cancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Customer");
         }
     }
 }

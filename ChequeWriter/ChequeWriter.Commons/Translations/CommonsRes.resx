@@ -124,8 +124,14 @@
     <value>Add {0}</value>
     <comment>Add {0}</comment>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="Canceled" xml:space="preserve">
     <value>Canceled</value>
+  </data>
+  <data name="Command" xml:space="preserve">
+    <value>Command</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Confirm Password</value>
@@ -135,6 +141,13 @@
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Edit_" xml:space="preserve">
+    <value>Edit {0}</value>
+    <comment>Edit {0}</comment>
   </data>
   <data name="Empty" xml:space="preserve">
     <value>Empty</value>

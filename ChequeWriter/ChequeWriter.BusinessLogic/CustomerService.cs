@@ -161,13 +161,7 @@ namespace ChequeWriter.BusinessLogic
 
         public string GenerateNewCustomerNo()
         {
-            var pagedResult = UnitOfWork.CustomerRepo.Retrieve(1, 1, 
-                orderCriteria: new Dictionary<string, string> { {"CustomerID", "desc"} });
-            long latestId = 0;
-            if (pagedResult.TotalCount > 0)
-            {
-                latestId = pagedResult.Items.FirstOrDefault().CustomerID;
-            }
+            long latestId = UnitOfWork.CustomerRepo.GetCount();
             latestId++;
 
             return "Cust-" + latestId.ToString("D10");

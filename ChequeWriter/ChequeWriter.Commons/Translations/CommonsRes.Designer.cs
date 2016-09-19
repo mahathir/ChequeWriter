@@ -88,11 +88,29 @@ namespace ChequeWriter.Commons.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Canceled.
         /// </summary>
         public static string Canceled {
             get {
                 return ResourceManager.GetString("Canceled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Command.
+        /// </summary>
+        public static string Command {
+            get {
+                return ResourceManager.GetString("Command", resourceCulture);
             }
         }
         
@@ -120,6 +138,24 @@ namespace ChequeWriter.Commons.Translations {
         public static string Delete {
             get {
                 return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit {0}.
+        /// </summary>
+        public static string Edit_ {
+            get {
+                return ResourceManager.GetString("Edit_", resourceCulture);
             }
         }
         
