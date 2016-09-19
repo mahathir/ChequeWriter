@@ -97,6 +97,15 @@ namespace ChequeWriter.Commons.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Amount in Words.
+        /// </summary>
+        public static string AmountInWords {
+            get {
+                return ResourceManager.GetString("AmountInWords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to {0}?.
         /// </summary>
         public static string AreYouSureTo_ {
@@ -129,6 +138,15 @@ namespace ChequeWriter.Commons.Translations {
         public static string Only_ThatCanBe_ {
             get {
                 return ResourceManager.GetString("Only_ThatCanBe_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pay To The Order Of.
+        /// </summary>
+        public static string PayToTheOrderOf {
+            get {
+                return ResourceManager.GetString("PayToTheOrderOf", resourceCulture);
             }
         }
         

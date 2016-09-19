@@ -228,6 +228,11 @@ namespace ChequeWriter.Web.Cheque
                         Page.ModelState.AddModelError(error.Key, error.Value);
                     }
                 }
+                else if (e.CommandName == "Print")
+                {
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction",
+                        "window.open('" + ResolveUrl("~/Cheque/Print/" + chequeId) + "');window.location = window.location;", true);
+                }
                 else
                 {
                     Response.Redirect("~/Cheque/Default/" + this.CustomerDdl.SelectedValue);

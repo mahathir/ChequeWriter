@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AmountInWords" xml:space="preserve">
+    <value>Amount in Words</value>
+    <comment>Amount in Words</comment>
+  </data>
   <data name="AreYouSureTo_" xml:space="preserve">
     <value>Are you sure you want to {0}?</value>
     <comment>Are you sure you want to {0}?</comment>
@@ -132,6 +136,10 @@
   <data name="Only_ThatCanBe_" xml:space="preserve">
     <value>Only {0} that can be {1}.</value>
     <comment>Only {0} that can be {1}.</comment>
+  </data>
+  <data name="PayToTheOrderOf" xml:space="preserve">
+    <value>Pay To The Order Of</value>
+    <comment>Pay To The Order Of</comment>
   </data>
   <data name="Please_" xml:space="preserve">
     <value>Please {0}</value>
