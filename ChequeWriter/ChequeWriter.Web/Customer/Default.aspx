@@ -7,6 +7,8 @@
         </div>
         <div class="panel-body">
             <asp:HyperLink CssClass="btn btn-primary" NavigateUrl="~/Customer/Add" ID="AddCustomer" runat="server" />
+            <br />
+            <br />
             <div class="table-responsive">
                 <asp:GridView CssClass="table table-hover table-bordered" ID="Customer_GridView" AllowCustomPaging="true"
                     AllowPaging="true" AutoGenerateColumns="false" runat="server"
